@@ -12,10 +12,15 @@ from pypdf import PdfReader
 # ==========================================
 # CONFIGURAÇÕES
 # ==========================================
-PDF_PATH = "Marcondes-filho - 2022 - Dicionário da Comunicação.pdf"
-TSV_OUTPUT = "Dicionario_Comunicacao_Formatado.tsv"
-DICT_NAME = "Dicionario_Comunicacao"
-PAGINA_INICIAL_VERBETES = 28 # Ajuste conforme a introdução do livro
+# O script pergunta ao usuário qual o PDF e a página de início
+PDF_PATH = input("Digite o nome exato do arquivo PDF (ex: meu_livro.pdf): ")
+pagina_input = input("Em qual página começam os verbetes de fato? (ex: 28): ")
+PAGINA_INICIAL_VERBETES = int(pagina_input)
+
+# O Python cria os nomes de saída automaticamente tirando o ".pdf"
+NOME_BASE = PDF_PATH.replace(".pdf", "").replace(".PDF", "")
+TSV_OUTPUT = f"{NOME_BASE}_Formatado.tsv"
+DICT_NAME = f"{NOME_BASE}_GoldenDict"
 
 def extrair_texto_pdf(caminho_pdf, pagina_inicial):
     """Lê o PDF e extrai o texto a partir da página onde começam os verbetes."""
